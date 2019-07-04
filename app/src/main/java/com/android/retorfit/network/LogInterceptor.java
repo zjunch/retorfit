@@ -7,7 +7,6 @@ import java.util.Locale;
 
 import okhttp3.Interceptor;
 import okhttp3.Request;
-
 /**
  *  TODO Log拦截器代码
  */
