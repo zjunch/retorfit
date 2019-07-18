@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@drawable/shape_round5_solid_white"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/bg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        android:background="@mipmap/bg_app_update"/>
+
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="发现新版本"
+        android:textColor="#ffffffff"
+        android:textSize="20sp"
+        android:layout_marginTop="43dp"
+        android:layout_marginLeft="18dp" />
+
+
+    <TextView
+        android:id="@+id/tv_text"
+        android:layout_below="@+id/bg"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="18dp"
+        android:layout_height="wrap_content"
+        android:text="更新的内容"
+        android:textColor="#ff333333"
+        android:textSize="12sp" />
+
+        <LinearLayout
+            android:id="@+id/lv_content"
+            android:layout_below="@id/tv_text"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="11dp"
+            android:layout_height="wrap_content">
+
+        </LinearLayout>
+
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="13dp"
+        android:layout_below="@+id/lv_content"
+        android:layout_marginBottom="26dp"
+        android:layout_height="34dp">
+
+        <TextView
+            android:id="@+id/text_cancle"
+            android:layout_width="97dp"
+            android:layout_height="34dp"
+            android:gravity="center"
+            android:layout_marginLeft="10dp"
+            android:textColor="#ffb1b1b1"
+            android:text="下次再说"
+            android:background="@drawable/shape_round17_solid_white"
+            android:textSize="13sp"/>
+
+        <TextView
+            android:id="@+id/tv_load"
+            android:layout_width="97dp"
+            android:layout_height="34dp"
+            android:layout_marginRight="10dp"
+          android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:text="去下载"
+            android:textColor="#fff"
+            android:background="@drawable/shape_round17_solid_blue"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/tv_force"
+            android:layout_width="match_parent"
+            android:layout_height="34dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:text="去下载"
+            android:visibility="gone"
+            android:clickable="true"
+            android:textColor="#fff"
+            android:background="@drawable/shape_round17_solid_blue"
+            android:textSize="13sp"/>
+    </RelativeLayout>
+
+
+</RelativeLayout>

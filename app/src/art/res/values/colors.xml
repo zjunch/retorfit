@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3d88fe</color>
+    <color name="colorPrimaryDark">#3d88fe</color>
+    <color name="colorAccent">#3d88fe</color>
+    <color name="login_title">#3d88fe</color>
+    <color name="login_switch_taps_selelct">#B8E2FE</color>
+    <color name="quanfangweifanghu">#666666</color>
+    <color name="get_sms_code">#3d88fe</color>
+    <color name="base_title_text_color">#000000</color>
+    <color name="moxie_title_color">#ffffff</color>
+    <color name="moxie_title_text_color">#000000</color>
+</resources>
