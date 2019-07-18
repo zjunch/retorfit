@@ -1,4 +1,4 @@
-package com.creativearts.common.utils;
+package com.android.retorfit.utils;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -8,6 +8,7 @@ import android.os.Environment;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -311,7 +312,7 @@ public class VMBitmap {
      * @return 压缩后的图片临时路径
      */
     public static String compressTempImage(String path) {
-        Log.e("zjun开始压缩-----","time:"+System.currentTimeMillis());
+        Log.e("zjun开始压缩-----","time:"+ System.currentTimeMillis());
         Bitmap bitmap = compressByQuality(compressByDimension(path));
         //得到文件名
         String tempName = generateTempName(path);
@@ -321,7 +322,7 @@ public class VMBitmap {
         if (!file.exists()) {
             file.mkdirs();
         }
-        Log.e("zjun压缩完成-----","time:"+System.currentTimeMillis());
+        Log.e("zjun压缩完成-----","time:"+ System.currentTimeMillis());
         saveBitmapToSDCard(bitmap, tempPath + "/" + tempName);
         return tempPath + "/" + tempName;
     }

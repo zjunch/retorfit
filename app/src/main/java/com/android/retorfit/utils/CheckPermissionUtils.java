@@ -1,4 +1,4 @@
-package com.creativearts.ymt.utils;
+package com.android.retorfit.utils;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;

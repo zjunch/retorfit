@@ -1,14 +1,7 @@
-package com.creativearts.ymt.utils;
+package com.android.retorfit.utils;
 
-import android.net.Uri;
-import android.util.Log;
-
-import com.creativearts.common.interface_common.FunctionManager;
-import com.creativearts.common.model.WebImageInfo;
-import com.creativearts.common.utils.VMBitmap;
-
-import java.util.List;
-
+import com.android.retorfit.bean.ImageInfo;
+import com.android.retorfit.interface_common.FunctionManager;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
@@ -18,7 +11,7 @@ import io.reactivex.schedulers.Schedulers;
 
 public class RxJavaUtils {
     public  static  int finishNumber=0;
-    public static void toCompress(final WebImageInfo imageInfo,final int size) {
+    public static void toCompress(final ImageInfo imageInfo, final int size) {
         try {
             Observable.create(new ObservableOnSubscribe<String>() {
                 @Override

@@ -1,4 +1,4 @@
-package com.creativearts.ymt.utils;
+package com.android.retorfit.utils;
 
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -13,8 +13,8 @@ import android.support.v4.app.NotificationCompat;
 import android.view.View;
 import android.widget.RemoteViews;
 
-import com.creativearts.ymt.BuildConfig;
-import com.creativearts.ymt.R;
+import com.android.retorfit.BuildConfig;
+import com.android.retorfit.R;
 
 public class NotificationUtils extends ContextWrapper {
 
@@ -45,7 +45,7 @@ public class NotificationUtils extends ContextWrapper {
     public void createChannels() {
         // create android channel
         NotificationChannel androidChannel = new NotificationChannel(ANDROID_CHANNEL_ID,
-                ANDROID_CHANNEL_NAME,NotificationManager.IMPORTANCE_DEFAULT);
+                ANDROID_CHANNEL_NAME, NotificationManager.IMPORTANCE_DEFAULT);
         // Sets whether notifications posted to this channel should display notification lights
         androidChannel.enableLights(true);
 //        // Sets whether notification posted to this channel should vibrate.
@@ -87,7 +87,7 @@ public class NotificationUtils extends ContextWrapper {
                 .setOnlyAlertOnce(true);
     }
 
-    public void sendNotification( int notifyId ,String title, String content, RemoteViews remoteViews, PendingIntent intent) {
+    public void sendNotification(int notifyId , String title, String content, RemoteViews remoteViews, PendingIntent intent) {
         this.notifyId=notifyId;
         if(notifyId==1){
             remoteViews.setViewVisibility(R.id.notify_download_iv, View.GONE);

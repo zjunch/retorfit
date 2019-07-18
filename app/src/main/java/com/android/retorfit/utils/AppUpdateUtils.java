@@ -1,11 +1,11 @@
-package com.creativearts.ymt.utils;
+package com.android.retorfit.utils;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Environment;
 import android.provider.Settings;
 import android.support.annotation.RequiresApi;
 import android.support.v4.content.FileProvider;
@@ -19,30 +19,25 @@ import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.creativearts.common.interface_common.FunctionManager;
-import com.creativearts.common.interface_common.FunctionNoParamNoResult;
-import com.creativearts.common.interface_common.FunctionOnlyParam;
-import com.creativearts.ymt.BuildConfig;
-import com.creativearts.ymt.R;
-import com.creativearts.ymt.base.BaseActivity;
-import com.creativearts.ymt.view.MyProgressBar;
-import com.mobanker.eagleeye.utils.PreferencesUtils;
 
-import org.xutils.common.Callback;
-import org.xutils.http.RequestParams;
-import org.xutils.x;
+import com.android.retorfit.BuildConfig;
+import com.android.retorfit.MyApplication;
+import com.android.retorfit.R;
+import com.android.retorfit.StaticValuesUtils;
+import com.android.retorfit.interface_common.FunctionManager;
+import com.android.retorfit.interface_common.FunctionNoParamNoResult;
+import com.android.retorfit.interface_common.FunctionOnlyParam;
 
 import java.io.File;
 
-import static com.umeng.socialize.utils.ContextUtil.getPackageName;
 
 public class AppUpdateUtils {
 
     AlertDialog downLoadDialog;
-    BaseActivity mContext;
+    Activity mContext;
     private String apkUrl, versionContent, updateContent;
     private  boolean isSlience;
-    public AppUpdateUtils(BaseActivity context, String apkUrl, String versionContent, String updateContent) {
+    public AppUpdateUtils(Activity context, String apkUrl, String versionContent, String updateContent) {
         this.mContext = context;
         this.apkUrl = apkUrl;
         this.versionContent = versionContent;
@@ -53,7 +48,7 @@ public class AppUpdateUtils {
         }
     }
 
-    public AppUpdateUtils(BaseActivity mContext, String apkUrl) {
+    public AppUpdateUtils(Activity mContext, String apkUrl) {
         this.mContext = mContext;
         this.apkUrl = apkUrl;
         this.isSlience=true;
@@ -119,7 +114,7 @@ public class AppUpdateUtils {
         downLoadDialog.setCancelable(false);
     }
 
-    private  void addView(LinearLayout linearLayout,String updateContent){
+    private  void addView(LinearLayout linearLayout, String updateContent){
         TextView textView = new TextView(mContext);
         textView.setPadding(ValueUtil.dip2px(mContext, 18), ValueUtil.dip2px(mContext, 3), ValueUtil.dip2px(mContext, 18), ValueUtil.dip2px(mContext, 3));
         textView.setTextColor(mContext.getResources().getColor(R.color.gray_7));
@@ -159,7 +154,7 @@ public class AppUpdateUtils {
 
 
     public void checkStorePermission() {
-        boolean bl = CheckPermissionUtils.getExternalStoragePermissions(mContext, mContext.APP_STORAGE_PERMMISION);
+        boolean bl = CheckPermissionUtils.getExternalStoragePermissions(mContext, StaticValuesUtils.APP_STORAGE_PERMMISION);
         if (bl) {
             toUpdateServiceDownload();
         }else{
@@ -176,7 +171,7 @@ public class AppUpdateUtils {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void startInstallPermissionSettingActivity(final File file) {
-        Uri packageURI = Uri.parse("package:" + getPackageName());
+        Uri packageURI = Uri.parse("package:" + getPackageName(MyApplication.getInstance()));
         //注意这个是8.0新API
         Intent intent = new Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES, packageURI);
         FunctionManager.getInstance().addFunction(new FunctionNoParamNoResult("install_app") {
@@ -185,9 +180,12 @@ public class AppUpdateUtils {
                 openFile(file, mContext);
             }
         });
-        mContext.startActivityForResult(intent, mContext.INSTALL_PERMMISION);
+        mContext.startActivityForResult(intent, StaticValuesUtils.INSTALL_PERMMISION);
     }
 
+    public static final String getPackageName(Context context) {
+        return null == context ? "" : context.getPackageName();
+    }
 
     /**
      * 8.0需要安装的权限

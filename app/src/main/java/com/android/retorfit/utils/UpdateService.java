@@ -1,4 +1,4 @@
-package com.creativearts.ymt.utils;
+package com.android.retorfit.utils;
 
 import android.app.IntentService;
 import android.content.Context;
@@ -10,13 +10,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.RemoteViews;
 
-import com.creativearts.common.interface_common.FunctionManager;
-import com.creativearts.ymt.R;
-import com.mobanker.eagleeye.utils.PreferencesUtils;
 
-import org.xutils.common.Callback;
-import org.xutils.http.RequestParams;
-import org.xutils.x;
+import com.android.retorfit.R;
+import com.android.retorfit.interface_common.FunctionManager;
 
 import java.io.File;
 
@@ -27,7 +23,7 @@ public class UpdateService extends IntentService {
     private NotificationUtils notificationUtils;
     private File downapkfile;
     private  boolean isSlience;    //0为更新，1为下载还款出现的app
-    Callback.Cancelable cancelable;
+//    Callback.Cancelable cancelable;
 
     public UpdateService() {
         super("UpdateService");
@@ -72,56 +68,56 @@ public class UpdateService extends IntentService {
 
     private void downApk(String apkUrl) {
         setPresValue(true);
-        RequestParams params = new RequestParams(apkUrl);
-        //断点下载
-        params.setAutoRename(true);
-        File appCacheDir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/ymtApp");
-        if (!appCacheDir.exists()) {
-            appCacheDir.mkdirs();
-        }
-        params.setSaveFilePath(Environment.getExternalStorageDirectory().getAbsolutePath() + "/ymtApp/app_" + System.currentTimeMillis() + ".apk");
-        cancelable = x.http().get(params, new Callback.ProgressCallback<File>() {
-            @Override
-            public void onSuccess(File result) {
-                // 通知下载完成
-                downapkfile = result;
-                sendMessage(1, 100);
-                setPresValue(false);
-            }
-
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
-                Log.e("zjun", "onError");
-                setPresValue(false);
-            }
-
-            @Override
-            public void onCancelled(CancelledException cex) {
-                Log.e("zjun", "onCancelled");
-                setPresValue(false);
-            }
-
-            @Override
-            public void onFinished() {
-                Log.e("zjun", "onFinished");
-                setPresValue(false);
-            }
-
-            @Override
-            public void onWaiting() {
-            }
-
-            @Override
-            public void onStarted() {
-            }
-
-            @Override
-            public void onLoading(long total, long current, boolean isDownloading) {
-                int progress = (int) (current * 100 / total);
-                setPresValue(true);
-                sendMessage(0, progress);
-            }
-        });
+//        RequestParams params = new RequestParams(apkUrl);
+//        //断点下载
+//        params.setAutoRename(true);
+//        File appCacheDir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/ymtApp");
+//        if (!appCacheDir.exists()) {
+//            appCacheDir.mkdirs();
+//        }
+//        params.setSaveFilePath(Environment.getExternalStorageDirectory().getAbsolutePath() + "/ymtApp/app_" + System.currentTimeMillis() + ".apk");
+//        cancelable = x.http().get(params, new Callback.ProgressCallback<File>() {
+//            @Override
+//            public void onSuccess(File result) {
+//                // 通知下载完成
+//                downapkfile = result;
+//                sendMessage(1, 100);
+//                setPresValue(false);
+//            }
+//
+//            @Override
+//            public void onError(Throwable ex, boolean isOnCallback) {
+//                Log.e("zjun", "onError");
+//                setPresValue(false);
+//            }
+//
+//            @Override
+//            public void onCancelled(CancelledException cex) {
+//                Log.e("zjun", "onCancelled");
+//                setPresValue(false);
+//            }
+//
+//            @Override
+//            public void onFinished() {
+//                Log.e("zjun", "onFinished");
+//                setPresValue(false);
+//            }
+//
+//            @Override
+//            public void onWaiting() {
+//            }
+//
+//            @Override
+//            public void onStarted() {
+//            }
+//
+//            @Override
+//            public void onLoading(long total, long current, boolean isDownloading) {
+//                int progress = (int) (current * 100 / total);
+//                setPresValue(true);
+//                sendMessage(0, progress);
+//            }
+//        });
 
     }
 

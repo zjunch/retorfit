@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="login_welcome_tips">欢迎登录借贷导航</string>
+    <string name="login_welcome_tips">欢迎登录艺术</string>
     <string name="code_login">短信快捷登录</string>
     <string name="input_code_sms_please">请输入验证码</string>
     <string name="reget_code">%1$ds重新获取</string>
     <string name="code_rules">请输入16位及以下的密码</string>
-    <string name="appName">jkdh</string>
-    <string name="show_app_name">借贷导航</string>
-    <string name="need_permission">借贷导航需要存储权限</string>
+    <string name="appName">art</string>
+    <string name="show_app_name">艺术</string>
+    <string name="need_permission">艺术需要存储权限</string>
 </resources>

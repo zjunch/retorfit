@@ -1,4 +1,4 @@
-package com.mobanker.eagleeye.utils;
+package com.android.retorfit.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -256,7 +256,7 @@ public class PreferencesUtils {
 		editor.clear();
 		editor.commit();
 	}
-	public static void remove(Context context,String key){
+	public static void remove(Context context, String key){
 		SharedPreferences settings = context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_MULTI_PROCESS);
 		SharedPreferences.Editor editor=settings.edit();
 		editor.remove(key).apply();

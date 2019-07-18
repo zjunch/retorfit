@@ -16,6 +16,106 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    lintOptions {
+        disable 'GoogleAppIndexingWarning'
+    }
+    // recommend
+    dexOptions {
+        jumboMode = true
+    }
+    signingConfigs {
+        art {
+            keyAlias 'key0'
+            keyPassword 'android'
+            storeFile file('./arts.jks')
+            storePassword 'android'
+            v1SigningEnabled true
+            v2SigningEnabled true
+        }
+    }
+    buildTypes {
+
+        release {
+            minifyEnabled false
+            buildConfigField "Boolean", "IS_TEST", "false"
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            buildConfigField "Boolean", "IS_TEST", "true"
+            debuggable true
+            testCoverageEnabled false
+        }
+
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs'];
+        }
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+
+    flavorDimensions "APPNAME"
+
+    productFlavors {
+        art {
+            dimension "APPNAME"
+            applicationId "com.android.retorfitart"
+            buildConfigField "String", "chatAccessId", "\"dd994ca0-0745-11e9-b97b-a73b6b57404d\""
+            resValue "string", "app_name", "myRetorfit"
+            signingConfig signingConfigs.art
+//            manifestPlaceholders = [
+//                    JPUSH_PKGNAME: applicationId,
+//                    JPUSH_APPKEY : "859cdc2359561558d41bb6ae", //JPush上注册的包名对应的appkey.
+//                    JPUSH_CHANNEL: "ymt", //暂时填写默认值即可.
+//                    UMENG_CHANNEL: "ymt",
+//                    UMENG_APPKEY : "5a780524b27b0a404a000178",
+//                    GAODE_MAPKEY : "69f841468032f5961ff7503445d20fae",
+//                    XIAOMI_APPKEY: "MI-5981773027737",//小米平台注册的appkey
+//                    XIAOMI_APPID : "MI-2882303761517730737",//小米平台注册的appid
+//                    HUAWEI_APPID : "100252979",//华为平台注册的appid   直接运行debug 杀死没用，运行release 可用
+//            ]
+        }
+    }
+
+
+    android.applicationVariants.all { variant ->
+        switch (variant.buildType.getName()) {
+            case "release":
+                variant.buildConfigField "String", "FACEID", "\"43_QCetqRCt4iWqOQVmEzh-_FOm369Nn\""
+                variant.buildConfigField "String", "FACE_SECRECT", "\"_bhK_Zsrlm7kNEjiLzhcYx6WFLIVUZSm\""
+                variant.buildConfigField "String", "MXAPIKEY", "\"6300cc8de1d24b5195e6f130ab523d03\""
+                break
+            case "debug":
+                variant.buildConfigField "String", "FACEID", "\"Sg9olIjvKq5gaOLGvrHrJggxceBU1Axe\""
+                variant.buildConfigField "String", "FACE_SECRECT", "\"aNDjlM2vnGqb-vE3xJo-zWY7-DjBj0kw\""
+                variant.buildConfigField "String", "MXAPIKEY", "\"73f496aaa9614de99714cbcf9997c6ca\""
+                break
+        }
+
+        variant.buildConfigField "String", "APPLOG", "\"" + variant.flavorName + "\""
+
+        switch (variant.flavorName) {
+            case "art":
+                switch (variant.buildType.getName()) {
+                    case "release":
+                        variant.buildConfigField "String", "H5APIURL", "\"https://api.cbankhome.com\""
+                        variant.buildConfigField "String", "H5NETURL", "\"https:/ymtbnh5.cbankhome.com\""
+                        break
+                    case "debug":
+                        variant.buildConfigField "String", "H5APIURL", "\"http://fat01-ibank-services.zykj.com\""
+                        variant.buildConfigField "String", "H5NETURL", "\"http://fat01-ymt-ymtbnh5.zykj.com\""
+                        break
+                }
+                variant.buildConfigField "String", "WEXXINAPPID", "\"wxd1a3bb1cd0ed9036\""//已修改
+                variant.buildConfigField "String", "WEXXINAPPSECRECT", "\"56a7202074d9236fa815e0bc428bb11a\""//未修改
+                break
+        }
+    }
 }
 
 dependencies {

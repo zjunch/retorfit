@@ -12,6 +12,8 @@ import com.android.retorfit.network.HttpHelper;
 import com.android.retorfit.network.MyObserver;
 import com.android.retorfit.network.RetrofitUtils;
 
+import java.util.LinkedList;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -60,6 +62,14 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public void test(View view) {
+        LinkedList<String> linkedList=new LinkedList();
+        linkedList.add("sss");
+        linkedList.add("fff");
+        linkedList.add("fssssff");
+        linkedList.add("tttt");
+        linkedList.add(1,"fff");
+    }
 
 
 //    /**
